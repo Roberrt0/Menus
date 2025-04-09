@@ -17,18 +17,53 @@
     <div id="app">
         <h2>{{ mensaje }}</h2>
         <p>Hola {{ nombre }}</p>
+        <mensajillo texto="hola lu"></mensajillo>
+        <mensajillo texto="hola lu?"></mensajillo>
+        <mensajillo
+            texto="H̵̞̪͖̘̱̀̂́̽̈̿̆̈́̓͆͘̚͘ͅo̴̧͙̙̟͕͙̮̯͙̝̯̖̓͐̍̄̃̇́͒l̷̢̝͚͒ǎ̸̧̻̯̲͉̲͙̠̂̄͌̑͆̒̈́͂͐̑ ̵̡̡̧̡̧͉͍͖͇̲͉̎̀̄͗͑̇͌̈̃͛͐̽̃͝l̵̢̡̯̥͍͇̙̹̫̱̯̜͚͖̘̑̑̾̈́̐͒̀̚ṷ̴͛́̎̓́̈̎̂c̴̯̺͇̯̖̮͕̲̲͓̦͚̺̰̅̓̀̒̑̂͛̎̅̈́͋͘i̸̧̡̙̹̣͚̙̘̹̝͕̋f̴͚̫̞̫̫̥͔͂̉͂̍͆̓̒̔̈̔̀͊͠ȩ̴̡̡̘͉̱̭̼̥̬̹̒̾̄̏̓̽̿̈́̔r̵͔̫̃̄̔ͅ">
+        </mensajillo>
+        <mensajillo texto="👹👹👹👹👹"></mensajillo>
+        <movie-card title="hola imagen" image="https://picsum.photos/200/300"></movie-card>
+        <movie-card title="Hola diablo = hello kitty" image="https://picsum.photos/200"></movie-card>
+
+        <div v-if="estado == 'cagando el hola lucifer'">
+            <h1>Cargando...</h1>
+        </div>
+        <div v-else-if="estado == 'error'">
+            <h1>Hubos un error</h1>
+        </div>
+        <div v-else>
+            <p>Tu no tapas el baño saramambiche</p>
+        </div>
+
+        <ul>
+            <li v-for="pelicula in peliculas" :key="pelicula">
+                {{ pelicula }}
+            </li>
+        </ul>
+
     </div>
     <!-- Scripts VUE -->
     <script>
-        Vue.component('mensaje', {
-            props: ['nombre'],
-            template: '<h1><p>Hola desde el componente</p></h1>'
+        Vue.component('movie-card', {
+            props: ['image', 'title'],
+            template:
+                '<div>' +
+                '<img width="100" v-bind:src="image" v-bind:alt="title"/>' +
+                '<h2>{{ title }}</h2>' +
+                '</div>'
+        });
+        Vue.component('mensajillo', {
+            props: ['texto'],
+            template: '<h1><p>{{ texto }}</p></h1>'
         });
         new Vue({
             el: '#app',
             data: {
                 mensaje: 'Bienvenido!!!',
-                nombre: 'Chaval'
+                nombre: 'Chaval',
+                estado: "cagando el hola lucifer",
+                peliculas: ['enanos con sida', 'cepe', 'Franco']
             }
         });
     </script>
