@@ -1,6 +1,6 @@
 ﻿@{
     //Layout = "_NuevoLayout";
-    Layout = "";
+    Layout = "_Layout";
     ViewData["Title"] = "Privacy";
 }
 
@@ -42,6 +42,24 @@
             </li>
         </ul>
 
+        <ul>
+            <li v-for="(pelicula, index) in bpeliculas" :key="index">
+                {{ pelicula.titulo }}, {{ pelicula.imagen }}
+            </li>
+        </ul>
+
+        <movie-card v-for="(pelicula, index) in bpeliculas" :key="index" :title="pelicula.titulo"
+            :image="pelicula.imagen"></movie-card>
+
+        <ul>
+            <li v-for="frase in chuck" :key="index">
+                {{frase.value}}
+            </li>
+        </ul>
+
+        <movie-card v-for="(frase, index) in bchuck" :key="index" :title="frase.value"
+            :image="frase.icon_url"></movie-card>
+
     </div>
     <!-- Scripts VUE -->
     <script>
@@ -63,7 +81,51 @@
                 mensaje: 'Bienvenido!!!',
                 nombre: 'Chaval',
                 estado: "cagando el hola lucifer",
-                peliculas: ['enanos con sida', 'cepe', 'Franco']
+                peliculas: ['toy stroy', 'pikmin', 'Coco'],
+                bpeliculas: [
+                    { titulo: 'Horen und Schreiben sie', imagen: 'https://picsum.photos/200' },
+                    { titulo: 'Monster hunter', imagen: 'https://picsum.photos/200' },
+                    { titulo: 'tralalero tralala', imagen: 'https://picsum.photos/200' }
+                ],
+                chuck: [
+                    {
+                        "value": "Chuck Norris can skydive into outer space."
+                    },
+                    {
+                        "value": "The chief export of Chuck Norris is pain."
+                    },
+                    {
+                        "value": "Chuck Norris doesn't read books. He stares them down until he gets the information he wants."
+                    },
+                    {
+                        "value": "Time waits for no man. Unless that man is Chuck Norris."
+                    },
+                    {
+                        "value": "If you spell Chuck Norris in Scrabble, you win. Forever."
+                    },
+                ],
+                bchuck: [
+                    {
+                        "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+                        "value": "Chuck Norris can skydive into outer space."
+                    },
+                    {
+                        "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+                        "value": "The chief export of Chuck Norris is pain."
+                    },
+                    {
+                        "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+                        "value": "Chuck Norris doesn't read books. He stares them down until he gets the information he wants."
+                    },
+                    {
+                        "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+                        "value": "Time waits for no man. Unless that man is Chuck Norris."
+                    },
+                    {
+                        "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+                        "value": "If you spell Chuck Norris in Scrabble, you win. Forever."
+                    },
+                ]
             }
         });
     </script>

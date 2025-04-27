@@ -67,6 +67,17 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         }
                         </li>
+                        <li class="nav-item"></li>
+                        @if (ViewData["Title"] == "Get Joke")
+                        {
+                            <b><a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                                    asp-action="GetJoke">Joke</a></b>
+                        }
+                        else
+                        {
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="GetJoke">Joke</a>
+                        }
+                        </li>
                     </ul>
                 </div>
             </div>

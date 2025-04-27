@@ -1,0 +1,36 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Pokédex Entry";
+}
+@using menus.Models
+@model Pokemon
+
+<div class="container mt-5">
+    <div class="card border-danger mb-3 shadow-lg" style="max-width: 500px; margin: 0 auto;">
+        <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Pokédex Entry</h4>
+        </div>
+        <div class="card-body bg-light">
+            <div class="d-flex align-items-center mb-3">
+                <img src="@Model.ImageUrl" alt="@Model.Name" class="img-thumbnail border-dark me-3"
+                    style="width: 150px; height: 150px; object-fit: contain;">
+                <div>
+                    <h3 class="text-capitalize">@Model.Name</h3>
+                    <div class="d-flex flex-wrap gap-1">
+                        @foreach (var type in Model.Types)
+                        {
+                            <span class="badge bg-primary text-capitalize">@type</span>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="card border-dark">
+                <div class="card-body">
+                    <p class="mb-1"><strong>Weight:</strong> @Model.Weight</p>
+                    <p class="mb-0"><strong>Abilities:</strong> @string.Join(", ", Model.Abilities)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

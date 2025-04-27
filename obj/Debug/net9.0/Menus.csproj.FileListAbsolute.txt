@@ -95,3 +95,7 @@
 /Applications/XAMPP/xamppfiles/htdocs/Menus/obj/Debug/net9.0/Menus.pdb
 /Applications/XAMPP/xamppfiles/htdocs/Menus/obj/Debug/net9.0/Menus.genruntimeconfig.cache
 /Applications/XAMPP/xamppfiles/htdocs/Menus/obj/Debug/net9.0/ref/Menus.dll
+/Applications/XAMPP/xamppfiles/htdocs/Menus/obj/Debug/net9.0/Menus.sourcelink.json
+/Applications/XAMPP/xamppfiles/htdocs/Menus/bin/Debug/net9.0/PokeApiNet.dll
+/Applications/XAMPP/xamppfiles/htdocs/Menus/obj/Debug/net9.0/Menus.csproj.AssemblyReference.cache
+/Applications/XAMPP/xamppfiles/htdocs/Menus/obj/Debug/net9.0/Menus.csproj.Up2Date
