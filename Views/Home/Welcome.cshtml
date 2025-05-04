@@ -1,6 +1,15 @@
 @{
     Layout = "_Layout";
-    ViewData["Title"] = "Photos";
+    ViewData["Title"] = "Welcome";
 }
 
-<h2>Autenticacion exitosa, bienvenido!</h2>
+<div class="text-center mt-5">
+    <h2 class="display-4 text-success">¡Autenticación exitosa!</h2>
+    <p class="lead">Bienvenido al sistema, ahora puedes explorar nuestras funciones especiales.</p>
+
+    <div class="mt-4">
+        <a href="@Url.Action("GetJoke", "Home")" class="btn btn-outline-primary btn-lg mx-2">
+            Ver un chiste
+        </a>
+    </div>
+</div>

@@ -15,6 +15,11 @@ public class HomeController : Controller
     [HttpGet]
     public ActionResult Login()
     {
+        var isAuthenticated = HttpContext.Session.GetString("UserAuthenticated");
+        if (isAuthenticated == "true")
+        {
+            return RedirectToAction("Welcome");
+        }
         return View();
     }
     [HttpPost]
@@ -32,6 +37,7 @@ public class HomeController : Controller
         }
     }
 
+    // autenticacion exitosa
     public IActionResult Welcome()
     {
         var isAuthenticated = HttpContext.Session.GetString("UserAuthenticated");
@@ -42,13 +48,31 @@ public class HomeController : Controller
         return View();
     }
 
+    // no se ha auntenticado
+    public IActionResult UnauthorizedAccess()
+    {
+        return View();
+    }
+
     // LOGOUT
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Clear();
+        return RedirectToAction("Index");
+    }
+
 
     // JOKE API
     private readonly IHttpClientFactory _httpClientFactory;
 
     public async Task<IActionResult> GetJoke()
     {
+        var isAuthenticated = HttpContext.Session.GetString("UserAuthenticated");
+        if (isAuthenticated != "true")
+        {
+            return RedirectToAction("UnauthorizedAccess");
+        }
+
         var client = _httpClientFactory.CreateClient();
         var response = await client.GetAsync("https://v2.jokeapi.dev/joke/Any");
 
@@ -59,13 +83,12 @@ public class HomeController : Controller
             {
                 PropertyNameCaseInsensitive = true
             });
-            System.Console.WriteLine("Error: " + response.StatusCode);
             return View(joke);
         }
 
-        System.Console.WriteLine("Error: " + response.StatusCode);
         return NotFound();
     }
+
 
     // POKEMON API
     [HttpGet("Home/GetPokemon/{name}")]

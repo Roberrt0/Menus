@@ -77,6 +77,18 @@
                         {
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="GetJoke">Joke</a>
                         }
+
+                        @if (ViewData["Title"] == "Login")
+                        {
+                            <b><a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Log
+                                    in</a></b>
+                        }
+                        else
+                        {
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Log in</a>
+                        }
+
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Logout">Cerrar sesión</a>
                         </li>
                     </ul>
                 </div>
