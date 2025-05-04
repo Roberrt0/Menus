@@ -4,11 +4,46 @@ using Menus.Models;
 using menus.Models;
 using System.Text.Json;
 using System.Net.Http;
+using menus.Services;
+using AspNetCoreGeneratedDocument;
 
 namespace Menus.Controllers;
 
 public class HomeController : Controller
 {
+    // LOGIN
+    [HttpGet]
+    public ActionResult Login()
+    {
+        return View();
+    }
+    [HttpPost]
+    public ActionResult Login(User user)
+    {
+        if (authService.Authenticate(user.Username, user.Password))
+        {
+            HttpContext.Session.SetString("UserAuthenticated", "true");
+            return RedirectToAction("Welcome");
+        }
+        else
+        {
+            ViewBag.Error = "Usuario o contraseña incorrectos";
+            return View();
+        }
+    }
+
+    public IActionResult Welcome()
+    {
+        var isAuthenticated = HttpContext.Session.GetString("UserAuthenticated");
+        if (isAuthenticated != "true")
+        {
+            return RedirectToAction("Index");
+        }
+        return View();
+    }
+
+    // LOGOUT
+
     // JOKE API
     private readonly IHttpClientFactory _httpClientFactory;
 
@@ -74,14 +109,15 @@ public class HomeController : Controller
     }
 
     private readonly HttpClient httpClient;
-
     private readonly ILogger<HomeController> _logger;
+    private readonly IAuthService authService;
 
     public HomeController(IHttpClientFactory httpClientFactory, ILogger<HomeController> logger, HttpClient httpClient)
     {
         _httpClientFactory = httpClientFactory;
         _logger = logger;
         this.httpClient = httpClient;
+        this.authService = new SimpleAuthService();
     }
 
     public IActionResult Index()
